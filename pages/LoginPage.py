@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -37,17 +38,25 @@ class LoginPageHelper(BasePage):
         self.find_element(LoginPageLocators.MAILRU_BUTTON)
         self.find_element(LoginPageLocators.YANDEX_BUTTON)
 
+    @allure.step('Нажимаем на кнопку "Войти"')
     def click_login(self):
+        self.attach_screenshot()
         self.driver.find_element(*LoginPageLocators.LOGIN_BUTTON).click()
 
+    @allure.step('Получаем текст ошибки отсутствия логина')
     def get_no_login_error_text(self):
+        self.attach_screenshot()
         return WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(LoginPageLocators.NO_LOGIN_ERROR_TEXT)).text
 
+    @allure.step('Получаем текст ошибки отсутствия пароля')
     def get_no_password_error_text(self):
+        self.attach_screenshot()
         return WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(LoginPageLocators.NO_PASSWORD_ERROR_TEXT)).text
 
+    @allure.step('Нажимаем на поле логина')
     def click_login_field(self):
         self.driver.find_element(*LoginPageLocators.LOGIN_FIELD).click()
 
+    @allure.step('Заполняем поле логина')
     def fill_login_field(self):
         self.driver.find_element(*LoginPageLocators.LOGIN_FIELD).send_keys("asadasds")
