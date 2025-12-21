@@ -9,7 +9,7 @@ BASE_URL = "https://ok.ru/"
 EMPTY_LOGIN_ERROR = "Введите логин"
 EMPTY_PASSWORD_ERROR = "Введите пароль"
 
-
+@allure.feature("WebTests")
 @allure.suite("Проверка формы авторизации")
 @allure.title("Проверка ошибки при пустом логине")
 def test_empty_login(browser):
